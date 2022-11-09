@@ -5,7 +5,7 @@ import {
     UpdateMovies,
     DeleteMovies,
     CreateMovies
-} from '../services/movies.services.js'
+} from '../services/movies.service.js'
 const router = express.Router()
 
 router.get("/", async function (request, response) {
