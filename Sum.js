@@ -16,7 +16,7 @@
 // const fs = require('fs')
 // import fs from 'fs'  // This usesd in module which we have to change in package.json
 // const text1 = 'hi syed how are you..?'
-// const [, , num] = process.argv
+//const [, , num] = process.argv 
 // for(let i=1;i<=num;i++){
 //     fs.writeFile(`./backup/text${i}.html`, text1, (err) => {
 //         console.log('completed writing')
