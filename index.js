@@ -4,6 +4,7 @@ import { MongoClient } from "mongodb";
 import moviesRouter from './routes/movies.route.js'
 import userRouter from './routes/user.route.js'
 import * as dotenv from 'dotenv'
+import cors from 'cors';
 dotenv.config();
 console.log(process.env.MONGO_URL)
 const app = express();
@@ -21,6 +22,7 @@ app.get("/", function (request, response) {
 });
 
 app.use(express.json()) // middleware
+app.use(cors())
 app.use('/movies', moviesRouter)
 app.use('/users', userRouter)
 
