@@ -2,9 +2,9 @@ import { client } from '../index.js';
 
 
 export async function CreateUser(data) {
-    return await client.db('b39wd').collection('user').insertOne(data);
+    return await client.db('Authentication').collection('users').insertOne(data);
 }
 
-export async function getUserByName(name) {
-    return await client.db('b39wd').collection('user').findOne({name:name});
+export async function getUserByName(email) {
+    return await client.db('Authentication').collection('users').findOne({email:email});
 }

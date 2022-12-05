@@ -14,7 +14,7 @@ router.get("/", auth, async function (request, response) {
       request.query.rating = +request.query.rating
     }
     console.log(request.query)
-    const movies = await getMoviess(request);
+    const movies = await getMoviess(request.query);
     response.send(movies);
   });
   
