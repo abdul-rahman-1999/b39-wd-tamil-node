@@ -77,7 +77,7 @@ async function genHashedPassword(password){
         if(email){
           const userFromDb = await getUserByName(email);
           const token = jwt.sign({id:userFromDb._id},process.env.SECRET_KEY,{
-            expiresIn:"1d"
+            expiresIn:"120s"
           });
 
           const setuserToken = await client.db('Authentication').collection('users').findOneAndUpdate({email:userFromDb.email},{ $set:{verifyToken:token}},{returnDocument:"after"}); 
