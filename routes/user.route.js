@@ -62,7 +62,7 @@ async function genHashedPassword(password){
       const token = jwt.sign({id:userFromDb._id}, process.env.SECRET_KEY)
       response.send({msg:"Login Successfully",token:token})
     }else{
-      response.status(400).send({msg:"Invalid Credentials"})
+      response.send({msg:"Invalid Credentials"})
     }
     }
   })
@@ -77,7 +77,7 @@ async function genHashedPassword(password){
         if(email){
           const userFromDb = await getUserByName(email);
           const token = jwt.sign({id:userFromDb._id},process.env.SECRET_KEY,{
-            expiresIn:"120s"
+            expiresIn:120000
           });
 
           const setuserToken = await client.db('Authentication').collection('users').findOneAndUpdate({email:userFromDb.email},{ $set:{verifyToken:token}},{returnDocument:"after"}); 
@@ -86,7 +86,7 @@ async function genHashedPassword(password){
               from:process.env.EMAIL,
               to:email,
               subject:"Sending email for password reset",
-              text:`This Link valid for 2 minutes and please change this localhost 3000 to netlify URL which you are using now http://localhost:3000/PasswordReset/${email}/${setuserToken.value.verifyToken}`
+              text:`This Link valid for 2 minutes and please change this localhost 3000 to netlify URL which you are using now ${PROCESS.ENV.BASE_PATH}/PasswordReset/${email}/${setuserToken.value.verifyToken}`
             }
             transporter.sendMail(mailOptions,(error,info) => {
               if(error){
